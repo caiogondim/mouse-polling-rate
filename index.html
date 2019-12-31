@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>mouse polling rate</title>
+  <style>
+    html, body {
+      width: 100vw;
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Move your mouse</h1>
+  <p>Mouse polling rate: <span id="polling-rate">0</span></p>
+  <script>
+    // @ts-check
+
+    const $body = document.querySelector('body')
+    const $pollingRate = document.querySelector('#polling-rate')
+    let count = 0
+
+    setInterval(() => {
+      render()
+      count = 0
+    }, 1000)
+
+    $body.addEventListener('mousemove', () => {
+      count += 1
+    })
+
+    function render() {
+      $pollingRate.innerHTML = `${count}Hz`
+    }
+  </script>
+</body>
+</html>
